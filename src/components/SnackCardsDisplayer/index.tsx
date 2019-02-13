@@ -4,9 +4,10 @@ import SnackCard from "../SnackCard";
 
 interface IProps {
     dataSource: ISnack[]
+    handleBtnLikeClick: (param:number) => void
 }
 
-const SnackCardsDisplayer = ({dataSource}: IProps) => {
+const SnackCardsDisplayer = ({dataSource, handleBtnLikeClick}: IProps) => {
     if (!dataSource.length) return null
     return (
         <>
@@ -19,6 +20,7 @@ const SnackCardsDisplayer = ({dataSource}: IProps) => {
                             price={snack.price}
                             description={snack.description}
                             likesCount={snack.likesCount}
+                            handleBtnLikeClick={ () => handleBtnLikeClick(snack.id)}
                         />
                     )
                 })

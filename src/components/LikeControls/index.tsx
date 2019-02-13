@@ -5,12 +5,16 @@ import {faCircle, faThumbsUp as likeIconSolid} from "@fortawesome/free-solid-svg
 
 interface IProps {
     likesCount: number
+    handleBtnLikeClick: () => void
 }
 
-const LikeControls = ({likesCount}: IProps) => {
+const LikeControls = ({likesCount, handleBtnLikeClick}: IProps) => {
     return (
         <div>
-            <a className="icon is-small">
+            <a
+                className="icon is-small"
+                onClick={handleBtnLikeClick}
+            >
                 <FontAwesomeIcon title={"like"} icon={likeIcon} color="blue"/>
             </a>
             <br/>

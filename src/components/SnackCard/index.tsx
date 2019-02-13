@@ -9,6 +9,7 @@ interface IProps {
     price: number | string,
     description: string,
     likesCount: number,
+    handleBtnLikeClick: () => void
 }
 
 const StyledBox = styled.div`
@@ -17,7 +18,7 @@ const StyledBox = styled.div`
 `
 
 
-const SnackCard = ({imgUrl, title, price, description, likesCount }: IProps) => {
+const SnackCard = ({imgUrl, title, price, description, likesCount, handleBtnLikeClick}: IProps) => {
 
     return (
         <StyledBox className="box">
@@ -45,6 +46,7 @@ const SnackCard = ({imgUrl, title, price, description, likesCount }: IProps) => 
                 <div className="media-right">
                     <LikeControls
                         likesCount={likesCount}
+                        handleBtnLikeClick={handleBtnLikeClick}
                     />
                 </div>
             </article>
