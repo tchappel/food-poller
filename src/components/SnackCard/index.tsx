@@ -2,13 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import LikeControls from "../LikeControls";
 import AdminControls from "../AdminControls";
+import {ISnack} from "../../App";
 
 interface IProps {
-    imgUrl: string,
-    title: string,
-    price: number | string,
-    description: string,
-    likesCount: number,
+    snack: ISnack,
+    handleBtnLikeClick: () => void
 }
 
 const StyledBox = styled.div`
@@ -17,23 +15,23 @@ const StyledBox = styled.div`
 `
 
 
-const SnackCard = ({imgUrl, title, price, description, likesCount }: IProps) => {
+const SnackCard = ({snack, handleBtnLikeClick}: IProps) => {
 
     return (
         <StyledBox className="box">
             <article className="media">
                 <figure className="media-left">
                     <p className="image is-64x64">
-                        <img src={imgUrl}/>
+                        <img src={snack.imgUrl}/>
                     </p>
                 </figure>
                 <div className="media-content">
                     <div className="content">
                         <p>
-                            <strong>{title}</strong>
-                            <small>{price} CZK</small>
+                            <strong>{snack.name}</strong>
+                            <small>{snack.price} CZK</small>
                             <br/>
-                            {description}
+                            {snack.description}
                         </p>
                     </div>
                     <nav className="level is-mobile">
@@ -44,7 +42,8 @@ const SnackCard = ({imgUrl, title, price, description, likesCount }: IProps) => 
                 </div>
                 <div className="media-right">
                     <LikeControls
-                        likesCount={likesCount}
+                        likesCount={snack.likesCount}
+                        handleBtnLikeClick={handleBtnLikeClick}
                     />
                 </div>
             </article>
