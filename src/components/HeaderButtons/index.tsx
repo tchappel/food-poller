@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HeaderButtons = () => {
+const LogButtons = () => {
     return (
         <div className="buttons">
             <a className="button is-primary">
@@ -13,4 +13,4 @@ const HeaderButtons = () => {
     )
 }
 
-export default HeaderButtons
+export default LogButtons

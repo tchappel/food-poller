@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import LoggedUserCard from "../LoggedUserCard";
 import {IUser} from "../../App";
-import HeaderButtons from "../HeaderButtons";
+import LogButtons from "../HeaderButtons";
 
 interface IProps {
     user: IUser
@@ -22,10 +22,7 @@ const Header = ({user, maxLikes}: IProps) => {
                     BSS FoodPoll
                 </Brand>
             </div>
-
             <div className="navbar-menu is-active">
-                <div className="navbar-start">
-                </div>
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <LoggedUserCard
@@ -34,7 +31,7 @@ const Header = ({user, maxLikes}: IProps) => {
                         />
                     </div>
                     <div className="navbar-item">
-                        <HeaderButtons />
+                        <LogButtons />
                     </div>
                 </div>
             </div>
