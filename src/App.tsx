@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './App.css'
 import 'bulma/css/bulma.css'
 import SnackCardsDisplayer from "./components/SnackCardsDisplayer";
+import Header from "./components/Header";
 
 export interface ISnack {
     name: string,
@@ -12,12 +13,13 @@ export interface ISnack {
     description: string
 }
 
-interface IUser {
+export interface IUser {
     name: string,
     id: number
     isAdmin: boolean
     likedSnacks: number[]
     snacksLikesCount: number,
+    imageUrl: string
 }
 
 interface IState {
@@ -36,7 +38,8 @@ class App extends Component<IProps, IState> {
             id: 1,
             isAdmin: true,
             likedSnacks: [],
-            snacksLikesCount: 0
+            snacksLikesCount: 0,
+            imageUrl: 'https://media.licdn.com/dms/image/C4E03AQHzUoKplzvsvQ/profile-displayphoto-shrink_200_200/0?e=1555545600&v=beta&t=1wrE1xAuKv64Om4dMiQhx0NqdZbT33uwxuKuQ2vNHco'
         },
         snacks: [
             {
@@ -111,9 +114,13 @@ class App extends Component<IProps, IState> {
 
 
     render() {
-        const {snacks} = this.state
+        const {snacks, user, maxLikes} = this.state
         return (
             <div className="App">
+                <Header
+                    user={user}
+                    maxLikes={maxLikes}
+                />
                 <SnackCardsDisplayer
                     snacks={snacks}
                     handleBtnLikeClick={this.handleBtnLikeClick}
