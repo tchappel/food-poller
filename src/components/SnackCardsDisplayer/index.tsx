@@ -3,24 +3,21 @@ import {ISnack} from "../../App";
 import SnackCard from "../SnackCard";
 
 interface IProps {
-    dataSource: ISnack[]
+    snacks: ISnack[]
     handleBtnLikeClick: (param:number) => void
 }
 
-const SnackCardsDisplayer = ({dataSource, handleBtnLikeClick}: IProps) => {
-    if (!dataSource.length) return null
+const SnackCardsDisplayer = ({snacks, handleBtnLikeClick}: IProps) => {
+    if (!snacks.length) return null
     return (
         <>
             {
-                dataSource.map(snack => {
+                snacks.map(snack => {
                     return (
                         <SnackCard
-                            imgUrl={snack.imgUrl}
-                            title={snack.name}
-                            price={snack.price}
-                            description={snack.description}
-                            likesCount={snack.likesCount}
+                            snack={snack}
                             handleBtnLikeClick={ () => handleBtnLikeClick(snack.id)}
+                            key={snack.id}
                         />
                     )
                 })
