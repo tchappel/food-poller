@@ -20,7 +20,10 @@ const LikeControls: React.FunctionComponent<IProps> = ({snack}) => (
                         <FontAwesomeIcon title={"like"} icon={likeIcon} color="blue"/>
                     </a>
                     <br/>
-                    <a className="icon is-small">
+                    <a
+                        className="icon is-small"
+                        onClick={() => context.handleBtnRemoveLikeClick(snack.id)}
+                    >
                         <FontAwesomeIcon title={"like"} icon={faThumbsDown} color="red"/>
                     </a>
                     <br/>
