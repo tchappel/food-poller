@@ -3,7 +3,6 @@ export interface IUser {
     id: number
     isAdmin: boolean
     likedSnacks: number[]
-    snacksLikesCount: number,
     imageUrl: string
 }
 
@@ -19,7 +18,7 @@ export interface ISnack {
 export interface IAppData {
     maxLikes: number,
     user: IUser,
-    snacks: ISnack[]
+    snacks: ISnack[],
 }
 
 export const appData: IAppData = {
@@ -29,7 +28,6 @@ export const appData: IAppData = {
         id: 1,
         isAdmin: true,
         likedSnacks: [],
-        snacksLikesCount: 0,
         imageUrl: 'https://media.licdn.com/dms/image/C4E03AQHzUoKplzvsvQ/profile-displayphoto-shrink_200_200/0?e=1555545600&v=beta&t=1wrE1xAuKv64Om4dMiQhx0NqdZbT33uwxuKuQ2vNHco'
     },
     snacks: [
@@ -74,4 +72,8 @@ export const appData: IAppData = {
             description: 'super yummy'
         }
     ]
+}
+
+export const appFunctions = {
+    handleBtnLikeClick: (id: number) => null
 }

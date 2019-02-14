@@ -8,26 +8,24 @@ const Brand = styled.div`
     font-size: 24px;
 `
 
-const Header = () => {
-    return (
-        <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
-            <div className="navbar-brand">
-                <Brand className="navbar-item">
-                    BSS FoodPoll
-                </Brand>
-            </div>
-            <div className="navbar-menu is-active">
-                <div className="navbar-end">
-                    <div className="navbar-item">
-                        <LoggedUserCard />
-                    </div>
-                    <div className="navbar-item">
-                        <LogButtons/>
-                    </div>
+const Header: React.FunctionComponent = () => (
+    <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+            <Brand className="navbar-item">
+                BSS FoodPoll
+            </Brand>
+        </div>
+        <div className="navbar-menu is-active">
+            <div className="navbar-end">
+                <div className="navbar-item">
+                    <LoggedUserCard/>
+                </div>
+                <div className="navbar-item">
+                    <LogButtons/>
                 </div>
             </div>
-        </nav>
-    )
-}
+        </div>
+    </nav>
+)
 
 export default Header

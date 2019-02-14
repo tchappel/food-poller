@@ -2,30 +2,21 @@ import React from 'react'
 import SnackCard from "../SnackCard";
 import {AppContextConsumer} from "../../Context";
 
-const SnackCardsDisplayer = () => {
-    return (
-        <AppContextConsumer>
-            {context => {
-                if (context) {
-                    const { snacks } = context.state
-                    return (
-                        <React.Fragment>
-                            {
-                                snacks.map(snack => {
-                                    return (
-                                        <SnackCard
-                                            snack={snack}
-                                            key={snack.id}
-                                        />
-                                    )
-                                })
-                            }
-                        </React.Fragment>
-                    )
+const SnackCardsDisplayer: React.FunctionComponent = () => (
+    <AppContextConsumer>
+        {context => (
+            <React.Fragment>
+                {
+                    context.snacks.map(snack => (
+                        <SnackCard
+                            snack={snack}
+                            key={snack.id}
+                        />
+                    ))
                 }
-            }}
-        </AppContextConsumer>
-    )
-}
+            </React.Fragment>
+        )}
+    </AppContextConsumer>
+)
 
 export default SnackCardsDisplayer

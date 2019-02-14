@@ -9,35 +9,29 @@ interface IProps {
     snack: ISnack
 }
 
-const LikeControls = ({snack}: IProps) => {
-    return (
+const LikeControls: React.FunctionComponent<IProps> = ({snack}) => (
         <AppContextConsumer>
-            {context => {
-                if (context) {
-                    return (
-                        <div>
-                            <a
-                                className="icon is-small"
-                                onClick={() => context.handleBtnLikeClick(snack.id)}
-                            >
-                                <FontAwesomeIcon title={"like"} icon={likeIcon} color="blue"/>
-                            </a>
-                            <br/>
-                            <a className="icon is-small">
-                                <FontAwesomeIcon title={"like"} icon={faThumbsDown} color="red"/>
-                            </a>
-                            <br/>
-                            <span className="fa-layers fa-fw icon is-small">
+            {context => (
+                <div>
+                    <a
+                        className="icon is-small"
+                        onClick={() => context.handleBtnLikeClick(snack.id)}
+                    >
+                        <FontAwesomeIcon title={"like"} icon={likeIcon} color="blue"/>
+                    </a>
+                    <br/>
+                    <a className="icon is-small">
+                        <FontAwesomeIcon title={"like"} icon={faThumbsDown} color="red"/>
+                    </a>
+                    <br/>
+                    <span className="fa-layers fa-fw icon is-small">
                             <FontAwesomeIcon icon={faCircle} color="blue"/>
                             <FontAwesomeIcon icon={likeIconSolid} color="white" size="xs"/>
                         </span>
-                            <small>{snack.likesCount}</small>
-                        </div>
-                    )
-                }
-            }}
+                    <small>{snack.likesCount}</small>
+                </div>
+            )}
         </AppContextConsumer>
     )
-}
 
 export default LikeControls
