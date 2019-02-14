@@ -2,11 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import LikeControls from "../LikeControls";
 import AdminControls from "../AdminControls";
-import {ISnack} from "../../App";
+import {ISnack} from "../../appData";
 
 interface IProps {
     snack: ISnack,
-    handleBtnLikeClick: () => void
 }
 
 const StyledBox = styled.div`
@@ -15,7 +14,7 @@ const StyledBox = styled.div`
 `
 
 
-const SnackCard = ({snack, handleBtnLikeClick}: IProps) => {
+const SnackCard = ({ snack }: IProps) => {
 
     return (
         <StyledBox className="box">
@@ -42,8 +41,7 @@ const SnackCard = ({snack, handleBtnLikeClick}: IProps) => {
                 </div>
                 <div className="media-right">
                     <LikeControls
-                        likesCount={snack.likesCount}
-                        handleBtnLikeClick={handleBtnLikeClick}
+                        snack={snack}
                     />
                 </div>
             </article>

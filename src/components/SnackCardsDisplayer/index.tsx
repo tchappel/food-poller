@@ -1,30 +1,31 @@
 import React from 'react'
-import {ISnack} from "../../App";
 import SnackCard from "../SnackCard";
+import {AppContextConsumer} from "../../Context";
 
-interface IProps {
-    snacks: ISnack[]
-    handleBtnLikeClick: (param:number) => void
-}
-
-const SnackCardsDisplayer = ({snacks, handleBtnLikeClick}: IProps) => {
-    if (!snacks.length) return null
+const SnackCardsDisplayer = () => {
     return (
-        <>
-            {
-                snacks.map(snack => {
+        <AppContextConsumer>
+            {context => {
+                if (context) {
+                    const { snacks } = context.state
                     return (
-                        <SnackCard
-                            snack={snack}
-                            handleBtnLikeClick={ () => handleBtnLikeClick(snack.id)}
-                            key={snack.id}
-                        />
+                        <React.Fragment>
+                            {
+                                snacks.map(snack => {
+                                    return (
+                                        <SnackCard
+                                            snack={snack}
+                                            key={snack.id}
+                                        />
+                                    )
+                                })
+                            }
+                        </React.Fragment>
                     )
-                })
-            }
-        </>
+                }
+            }}
+        </AppContextConsumer>
     )
 }
-
 
 export default SnackCardsDisplayer
