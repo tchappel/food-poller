@@ -15,14 +15,14 @@ const LikeControls: React.FunctionComponent<IProps> = ({snack}) => (
                 <div>
                     <a
                         className="icon is-small"
-                        onClick={() => context.handleBtnLikeClick(snack.id)}
+                        onClick={() => context.addLikeToSnack(snack)}
                     >
                         <FontAwesomeIcon title={"like"} icon={likeIcon} color="blue"/>
                     </a>
                     <br/>
                     <a
                         className="icon is-small"
-                        onClick={() => context.handleBtnRemoveLikeClick(snack.id)}
+                        onClick={() => context.removeLikeFromSnack(snack)}
                     >
                         <FontAwesomeIcon title={"like"} icon={faThumbsDown} color="red"/>
                     </a>

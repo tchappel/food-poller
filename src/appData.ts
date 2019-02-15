@@ -75,6 +75,6 @@ export const appData: IAppData = {
 }
 
 export const appFunctions = {
-    handleBtnLikeClick: (id: number) => null,
-    handleBtnRemoveLikeClick: (id: number) => null,
+    addLikeToSnack: (snack: ISnack) => null,
+    removeLikeFromSnack: (snack: ISnack) => null,
 }
