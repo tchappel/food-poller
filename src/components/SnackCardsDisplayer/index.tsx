@@ -1,6 +1,6 @@
 import React from 'react'
 import SnackCard from "../SnackCard";
-import {AppContextConsumer} from "../../Context";
+import {AppContextConsumer} from "../../appContext";
 
 const SnackCardsDisplayer: React.FunctionComponent = () => (
     <AppContextConsumer>

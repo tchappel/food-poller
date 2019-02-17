@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {AppContextConsumer} from "../../Context";
+import {AppContextConsumer} from "../../appContext";
 
 const UserName = styled.strong`
     color: white;

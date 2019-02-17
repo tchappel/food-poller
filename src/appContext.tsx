@@ -1,5 +1,7 @@
 import React, {Component, ReactNode} from 'react'
 import {appData, appFunctions, IAppData, ISnack, IUser} from "./appData";
+import {replacePropertyInObject} from "./common/objectUtils";
+import {addItemToArray, removeItemInArray, replaceItemInArray} from "./common/arrayUtils";
 
 interface IContext extends IAppData {
     addLikeToSnack: (snack: ISnack) => void
@@ -10,35 +12,12 @@ interface IProps {
     children: ReactNode
 }
 
-const context = React.createContext<IContext>({...appData, ...appFunctions});
+const appContext = React.createContext<IContext>({...appData, ...appFunctions});
 
-export const AppContextConsumer = context.Consumer;
+export const AppContextConsumer = appContext.Consumer;
 
 export class AppContextProvider extends Component<IProps, IAppData> {
     state = appData
-
-    private replacePropertyInObject = <T extends {}>(obj: T, property: string, value: any): T => {
-        return {...obj, ...{[property]: value}}
-    }
-
-    private replaceItemInArray = <T extends {}>(arr: T[], item: T, itemIndex: number): T[] => {
-        return [
-            ...arr.slice(0, itemIndex),
-            item,
-            ...arr.slice(itemIndex + 1)
-        ]
-    }
-
-    private removeItemInArray = <T extends {}>(arr: T[], item: T, itemIndex: number): T[] => {
-        return [
-            ...arr.slice(0, itemIndex),
-            ...arr.slice(itemIndex + 1)
-        ]
-    }
-
-    private addItemToArray = <T extends {}>(arr: T[], item: T): T[] => {
-        return arr.concat([item])
-    }
 
     private hasUserHasRemainingLikes = (state: IAppData): boolean => {
         const {user, maxLikes} = state
@@ -52,12 +31,12 @@ export class AppContextProvider extends Component<IProps, IAppData> {
         }
         this.setState((state) => {
             const {user, snacks} = state
-            const newUserLikedSnacks = this.addItemToArray(user.likedSnacks, snack.id)
-            const newUser = this.replacePropertyInObject(user, 'likedSnacks' , newUserLikedSnacks)
+            const newUserLikedSnacks = addItemToArray(user.likedSnacks, snack.id)
+            const newUser = replacePropertyInObject(user, 'likedSnacks' , newUserLikedSnacks)
             const newSnackLikesCount = snack.likesCount + 1
             const snackIndex = snacks.findIndex(el => el.id === snack.id)
-            const newSnack = this.replacePropertyInObject(snack, 'likesCount', newSnackLikesCount)
-            const newSnacks = this.replaceItemInArray(snacks, newSnack, snackIndex)
+            const newSnack = replacePropertyInObject(snack, 'likesCount', newSnackLikesCount)
+            const newSnacks = replaceItemInArray(snacks, newSnack, snackIndex)
             return {
                 user: newUser,
                 snacks: newSnacks
@@ -73,22 +52,22 @@ export class AppContextProvider extends Component<IProps, IAppData> {
         if (likedSnacks.includes(snack.id)) {
             this.setState(state => {
                 const {user, snacks} = state
-                const newUserLikedSnacks = this.removeItemInArray(
+                const newUserLikedSnacks = removeItemInArray(
                     likedSnacks,
                     snack.id,
                     likedSnacks.indexOf(snack.id)
                 )
-                const newUser = this.replacePropertyInObject(
+                const newUser = replacePropertyInObject(
                     user,
                     'likedSnacks',
                     newUserLikedSnacks
                 )
-                const newSnack = this.replacePropertyInObject(
+                const newSnack = replacePropertyInObject(
                     snack,
                     'likesCount',
                     snack.likesCount - 1
                 )
-                const newSnacks = this.replaceItemInArray(
+                const newSnacks = replaceItemInArray(
                     snacks,
                     newSnack,
                     snacks.findIndex(item => item.id === snack.id)
@@ -104,13 +83,13 @@ export class AppContextProvider extends Component<IProps, IAppData> {
 
     render() {
         return (
-            <context.Provider value={{
+            <appContext.Provider value={{
                 ...this.state,
                 addLikeToSnack: this.addLikeToSnack,
                 removeLikeFromSnack: this.removeLikeFromSnack
             }}>
                 {this.props.children}
-            </context.Provider>
+            </appContext.Provider>
         )
     }
 }

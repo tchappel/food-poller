@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faThumbsDown, faThumbsUp as likeIcon} from "@fortawesome/free-regular-svg-icons";
 import {faCircle, faThumbsUp as likeIconSolid} from "@fortawesome/free-solid-svg-icons";
 import {ISnack} from "../../appData";
-import {AppContextConsumer} from "../../Context";
+import {AppContextConsumer} from "../../appContext";
 
 interface IProps {
     snack: ISnack
